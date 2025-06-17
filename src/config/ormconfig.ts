@@ -8,6 +8,9 @@ import { PedidoItem } from '../modules/pedido-item/entities/pedido-item.entity';
 import { MetodoPagamento } from '../modules/metodo-pagamento/entities/metodo-pagamento.entity';
 import { ClienteMetodoPagamento } from '../modules/cliente-metodo-pagamento/entities/cliente-metodo-pagamento.entity';
 import { Pagamento } from '../modules/pagamento/entities/pagamento.entity';
+import { CategoriaProduto } from '../modules/categoria-produto/entities/categoria-produto.entity';
+import { StatusPedido } from '../modules/status-pedido/entities/status-pedido.entity';
+import { ReservaMesaLog } from '../modules/reserva-mesa-log/entities/reserva-mesa-log.entity';
 
 const ormConfig: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -26,6 +29,9 @@ const ormConfig: TypeOrmModuleOptions = {
     MetodoPagamento,
     ClienteMetodoPagamento,
     Pagamento,
+    CategoriaProduto,
+    StatusPedido,
+    ReservaMesaLog
   ],
   synchronize: true,
   logging: true,

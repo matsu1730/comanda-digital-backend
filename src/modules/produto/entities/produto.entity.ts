@@ -1,16 +1,17 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
+  Entity,
+  JoinColumn,
   ManyToOne,
-  JoinColumn, OneToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Estabelecimento } from '../../estabelecimento/entities/estabelecimento.entity';
 import { PedidoItem } from '../../pedido-item/entities/pedido-item.entity';
 
-@Entity({ name: 'TB_PRODUTO' })
+@Entity('tb_produto')
 export class Produto {
-  @PrimaryGeneratedColumn({ name: 'ID' })
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
   @Column({ name: 'nom_produto' })
@@ -28,7 +29,7 @@ export class Produto {
     },
     (estabelecimento) => estabelecimento.produtos,
   )
-  @JoinColumn({ name: 'ID_ESTABELECIMENTO' })
+  @JoinColumn({ name: 'id_estabelecimento' })
   estabelecimento: Estabelecimento;
 
   @OneToMany(() => PedidoItem, (pedidoItem) => pedidoItem.produto)

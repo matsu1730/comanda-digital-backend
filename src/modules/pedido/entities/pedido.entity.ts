@@ -1,26 +1,39 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn } from 'typeorm';
+import {
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Cliente } from '../../cliente/entities/cliente.entity';
 import { Estabelecimento } from '../../estabelecimento/entities/estabelecimento.entity';
-import { PedidoItem } from 'src/modules/pedido-item/entities/pedido-item.entity';
-import { Pagamento } from 'src/modules/pagamento/entities/pagamento.entity';
+import { StatusPedido } from '../../status-pedido/entities/status-pedido.entity';
+import { PedidoItem } from '../../pedido-item/entities/pedido-item.entity';
+import { Pagamento } from '../../pagamento/entities/pagamento.entity';
 
-@Entity({ name: 'TB_PEDIDO' })
+@Entity('tb_pedido')
 export class Pedido {
-  @PrimaryGeneratedColumn({ name: 'ID' })
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column({ name: 'dt_criacao', type: 'timestamp' })
-  dataCriacao: Date;
-
-  @ManyToOne(() => Cliente, (cliente) => cliente.pedidos)
-  @JoinColumn({ name: 'ID_CLIENTE' })
-  cliente: Cliente;
-
-  @ManyToOne(() => Estabelecimento, (estabelecimento) => estabelecimento.pedidos)
-  @JoinColumn({ name: 'ID_ESTABELECIMENTO' })
+  @ManyToOne(() => Estabelecimento)
+  @JoinColumn({ name: 'id_estabelecimento' })
   estabelecimento: Estabelecimento;
 
-  @OneToMany(() => PedidoItem, (pedidoItem) => pedidoItem.pedido)
+  @ManyToOne(() => Cliente)
+  @JoinColumn({ name: 'id_cliente' })
+  cliente: Cliente;
+
+  @ManyToOne(() => StatusPedido)
+  @JoinColumn({ name: 'id_status_pedido' })
+  statusPedido: StatusPedido;
+
+  @CreateDateColumn({ name: 'dt_criacao' })
+  dtCriacao: Date;
+
+  @OneToMany(() => PedidoItem, (item) => item.pedido)
   itens: PedidoItem[];
 
   @OneToOne(() => Pagamento, (pagamento) => pagamento.pedido)

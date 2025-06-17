@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, JoinColumn
 import { Pedido } from '../../pedido/entities/pedido.entity';
 import { ClienteMetodoPagamento } from '../../cliente-metodo-pagamento/entities/cliente-metodo-pagamento.entity';
 
-@Entity({ name: 'TB_PAGAMENTO' })
+@Entity({ name: 'tb_pagamento' })
 export class Pagamento {
   @PrimaryGeneratedColumn({ name: 'ID' })
   id: number;
@@ -14,10 +14,10 @@ export class Pagamento {
   dataPagamento: Date;
 
   @OneToOne(() => Pedido, (pedido) => pedido.pagamento)
-  @JoinColumn({ name: 'ID_PEDIDO' })
+  @JoinColumn({ name: 'id_pedido' })
   pedido: Pedido;
 
   @ManyToOne(() => ClienteMetodoPagamento, (clienteMetodoPagamento) => clienteMetodoPagamento.pagamentos)
-  @JoinColumn({ name: 'ID_CLIENTE_METODO_PAGAMENTO' })
+  @JoinColumn({ name: 'id_cliente_metodo_pagamento' })
   clienteMetodoPagamento: ClienteMetodoPagamento;
 }

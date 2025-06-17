@@ -29,6 +29,13 @@ export class ProdutoService {
     return entity;
   }
 
+  async findByEstabelecimento(idEstabelecimento: number): Promise<Produto[]> {
+    return this.produtoRepository.find({
+      where: { estabelecimento: { id: idEstabelecimento } },
+      relations: ['categoria'],
+    });
+  }
+
   async update(id: number, updateProdutoDto: UpdateProdutoDto): Promise<Produto> {
     await this.produtoRepository.update(id, updateProdutoDto);
     return this.findOne(id);

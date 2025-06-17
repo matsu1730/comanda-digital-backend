@@ -16,4 +16,7 @@ export class CreateProdutoDto {
 
   @IsNotEmpty()
   idEstabelecimento: number;
+
+  @IsNotEmpty()
+  idCategoria: number;
 }

@@ -9,6 +9,7 @@ export class RamoController {
 
   @Post()
   create(@Body() createRamoDto: CreateRamoDto) {
+    console.log('denis');
     return this.ramoService.create(createRamoDto);
   }
 

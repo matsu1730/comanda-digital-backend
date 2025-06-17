@@ -1,13 +1,12 @@
-import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreatePedidoDto {
   @IsNotEmpty()
-  @IsDateString()
-  dataCriacao: Date;
+  idEstabelecimento: number;
 
   @IsNotEmpty()
   idCliente: number;
 
   @IsNotEmpty()
-  idEstabelecimento: number;
+  idStatusPedido: number;
 }

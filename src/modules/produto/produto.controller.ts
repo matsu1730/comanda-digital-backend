@@ -22,6 +22,11 @@ export class ProdutoController {
     return this.produtoService.findOne(+id);
   }
 
+  @Get('estabelecimento/:id')
+  async findByEstabelecimento(@Param('id') id: number) {
+    return this.produtoService.findByEstabelecimento(id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProdutoDto: UpdateProdutoDto) {
     return this.produtoService.update(+id, updateProdutoDto);
