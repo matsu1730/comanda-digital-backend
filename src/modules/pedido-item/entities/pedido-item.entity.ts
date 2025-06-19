@@ -4,17 +4,17 @@ import { Produto } from '../../produto/entities/produto.entity';
 
 @Entity({ name: 'TB_PEDIDO_ITEM' })
 export class PedidoItem {
-  @PrimaryGeneratedColumn({ name: 'ID' })
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
   @Column({ name: 'num_quantidade' })
   quantidade: number;
 
   @ManyToOne(() => Pedido, (pedido) => pedido.itens)
-  @JoinColumn({ name: 'ID_PEDIDO' })
+  @JoinColumn({ name: 'id_pedido' })
   pedido: Pedido;
 
   @ManyToOne(() => Produto, (produto) => produto.pedidoItens)
-  @JoinColumn({ name: 'ID_PRODUTO' })
+  @JoinColumn({ name: 'id_produto' })
   produto: Produto;
 }
