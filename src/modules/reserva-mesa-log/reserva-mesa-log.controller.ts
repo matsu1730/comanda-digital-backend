@@ -9,6 +9,7 @@ export class ReservaMesaLogController {
 
   @Post()
   create(@Body() dto: CreateReservaMesaLogDto) {
+    console.log('Received JSON:', dto);
     return this.service.create(dto);
   }
 
