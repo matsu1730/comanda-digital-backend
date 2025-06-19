@@ -39,7 +39,7 @@ export class PedidoService {
       this.pedidoItemRepository.create({
         pedido: savedPedido,
         produto: { id: i.idProduto } as any,
-        quantidade: i.quantidade,
+        quantidade: i.quantidade
       }),
     );
 

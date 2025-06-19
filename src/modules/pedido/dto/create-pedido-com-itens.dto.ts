@@ -1,6 +1,6 @@
 import { IsArray, IsNotEmpty, ValidateNested } from 'class-validator';
-import { CreatePedidoItemDto } from '../../pedido-item/dto/create-pedido-item.dto';
 import { Type } from '@nestjs/class-transformer';
+import { UpdatePedidoItemDto } from '../../pedido-item/dto/update-pedido-item.dto';
 
 export class CreatePedidoComItensDto {
   @IsNotEmpty()
@@ -14,6 +14,6 @@ export class CreatePedidoComItensDto {
 
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => CreatePedidoItemDto)
-  itens: CreatePedidoItemDto[];
+  @Type(() => UpdatePedidoItemDto)
+  itens: UpdatePedidoItemDto[];
 }
