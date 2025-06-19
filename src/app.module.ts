@@ -12,6 +12,9 @@ import { ClienteMetodoPagamentoModule } from './modules/cliente-metodo-pagamento
 import { PagamentoModule } from './modules/pagamento/pagamento.module';
 import { ConfigModule } from '@nestjs/config';
 import { ReservaMesaLogModule } from './modules/reserva-mesa-log/reserva-mesa-log.module';
+import { CategoriaProdutoModule } from './modules/categoria-produto/categoria-produto.module';
+import { ReservaMesaLogModule } from './modules/reserva-mesa-log/reserva-mesa-log.module';
+import { StatusPedidoModule } from './modules/status-pedido/status-pedido.module';
 
 @Module({
   imports: [
@@ -22,6 +25,7 @@ import { ReservaMesaLogModule } from './modules/reserva-mesa-log/reserva-mesa-lo
     RamoModule,
     EstabelecimentoModule,
     ProdutoModule,
+    CategoriaProdutoModule,
     ClienteModule,
     PedidoModule,
     PedidoItemModule,
@@ -29,6 +33,7 @@ import { ReservaMesaLogModule } from './modules/reserva-mesa-log/reserva-mesa-lo
     ClienteMetodoPagamentoModule,
     PagamentoModule,
     ReservaMesaLogModule,
+    StatusPedidoModule
   ],
 })
 export class AppModule {}
