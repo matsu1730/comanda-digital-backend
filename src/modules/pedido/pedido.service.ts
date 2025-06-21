@@ -70,7 +70,6 @@ export class PedidoService {
         'statusPedido',
         'itens',
         'itens.produto',
-        'pagamentos',
       ],
     });
 
@@ -107,9 +106,7 @@ export class PedidoService {
     await this.pedidoRepository.update(id, partialEntity);
     return this.findOne(id);
   }
-
-
-
+  
   async remove(id: number): Promise<void> {
     await this.pedidoRepository.delete(id);
   }

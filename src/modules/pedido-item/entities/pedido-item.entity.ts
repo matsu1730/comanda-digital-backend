@@ -11,6 +11,7 @@ export class PedidoItem {
   quantidade: number;
 
   @ManyToOne(() => Pedido, (pedido) => pedido.itens)
+  @ManyToOne(() => Pedido, (pedido) => pedido.itens, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_pedido' })
   pedido: Pedido;
 

@@ -38,7 +38,6 @@ export class PedidoController {
     return this.pedidoService.findByCliente(id);
   }
 
-
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePedidoDto: UpdatePedidoDto) {
     return this.pedidoService.update(+id, updatePedidoDto);
