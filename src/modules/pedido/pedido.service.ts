@@ -76,7 +76,6 @@ export class PedidoService {
         'statusPedido',
         'itens',
         'itens.produto',
-        'pagamentos',
       ],
     });
 
