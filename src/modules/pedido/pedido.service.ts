@@ -1,11 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { Pedido } from './entities/pedido.entity';
 import { CreatePedidoDto } from './dto/create-pedido.dto';
 import { UpdatePedidoDto } from './dto/update-pedido.dto';
 import { CreatePedidoComItensDto } from './dto/create-pedido-com-itens.dto';
 import { PedidoItem } from '../pedido-item/entities/pedido-item.entity';
+import { Cron, CronExpression } from '@nestjs/schedule';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class PedidoService {
@@ -13,8 +15,12 @@ export class PedidoService {
     @InjectRepository(Pedido)
     private readonly pedidoRepository: Repository<Pedido>,
     @InjectRepository(PedidoItem)
-    private readonly pedidoItemRepository: Repository<PedidoItem>
+    private readonly pedidoItemRepository: Repository<PedidoItem>,
+    @InjectDataSource()
+    private dataSource: DataSource
   ) {}
+
+  private readonly logger = new Logger(PedidoService.name);
 
   async create(createPedidoDto: CreatePedidoDto): Promise<Pedido> {
     const entity = this.pedidoRepository.create({
@@ -108,9 +114,19 @@ export class PedidoService {
     return this.findOne(id);
   }
 
-
-
   async remove(id: number): Promise<void> {
     await this.pedidoRepository.delete(id);
+  }
+
+  @Cron(CronExpression.EVERY_MINUTE)
+  async updateStatus() {
+    try {
+      this.logger.log('Iniciando atualização de status dos pedidos...');
+      await this.dataSource.query('SELECT fn_atualizar_status_pedidos()');
+
+      this.logger.log('Status dos pedidos atualizados com sucesso');
+    } catch (error) {
+      this.logger.error('Erro ao atualizar status dos pedidos:', error);
+    }
   }
 }

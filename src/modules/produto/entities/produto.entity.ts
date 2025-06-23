@@ -8,10 +8,11 @@ import {
 } from 'typeorm';
 import { Estabelecimento } from '../../estabelecimento/entities/estabelecimento.entity';
 import { PedidoItem } from '../../pedido-item/entities/pedido-item.entity';
+import { CategoriaProduto } from '../../categoria-produto/entities/categoria-produto.entity';
 
 @Entity('tb_produto')
 export class Produto {
-  @PrimaryGeneratedColumn({ name: 'id' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ name: 'nom_produto' })
@@ -24,13 +25,15 @@ export class Produto {
   valor: number;
 
   @ManyToOne(
-    () => {
-      return Estabelecimento;
-    },
+    () => { return Estabelecimento; },
     (estabelecimento) => estabelecimento.produtos,
   )
   @JoinColumn({ name: 'id_estabelecimento' })
   estabelecimento: Estabelecimento;
+
+  @ManyToOne(() => { return CategoriaProduto; })
+  @JoinColumn({ name: 'id_categoria_produto' })
+  categoriaProduto: CategoriaProduto;
 
   @OneToMany(() => PedidoItem, (pedidoItem) => pedidoItem.produto)
   pedidoItens: PedidoItem[];

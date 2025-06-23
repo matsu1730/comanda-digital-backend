@@ -2,9 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Pedido } from '../../pedido/entities/pedido.entity';
 import { ClienteMetodoPagamento } from '../../cliente-metodo-pagamento/entities/cliente-metodo-pagamento.entity';
 
-@Entity({ name: 'TB_CLIENTE' })
+@Entity({ name: 'tb_cliente' })
 export class Cliente {
-  @PrimaryGeneratedColumn({ name: 'ID' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ name: 'num_cpf' })

@@ -4,7 +4,7 @@ import { ClienteMetodoPagamento } from '../../cliente-metodo-pagamento/entities/
 
 @Entity({ name: 'tb_pagamento' })
 export class Pagamento {
-  @PrimaryGeneratedColumn({ name: 'ID' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ name: 'val_pagamento', type: 'decimal' })

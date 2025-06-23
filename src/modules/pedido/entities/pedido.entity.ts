@@ -15,7 +15,7 @@ import { Pagamento } from '../../pagamento/entities/pagamento.entity';
 
 @Entity('tb_pedido')
 export class Pedido {
-  @PrimaryGeneratedColumn({ name: 'id' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @ManyToOne(() => Estabelecimento)

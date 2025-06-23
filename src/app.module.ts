@@ -14,12 +14,14 @@ import { ConfigModule } from '@nestjs/config';
 import { CategoriaProdutoModule } from './modules/categoria-produto/categoria-produto.module';
 import { ReservaMesaLogModule } from './modules/reserva-mesa-log/reserva-mesa-log.module';
 import { StatusPedidoModule } from './modules/status-pedido/status-pedido.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRoot(ormConfig),
     RamoModule,
     EstabelecimentoModule,
@@ -32,7 +34,7 @@ import { StatusPedidoModule } from './modules/status-pedido/status-pedido.module
     ClienteMetodoPagamentoModule,
     PagamentoModule,
     ReservaMesaLogModule,
-    StatusPedidoModule
+    StatusPedidoModule,
   ],
 })
 export class AppModule {}

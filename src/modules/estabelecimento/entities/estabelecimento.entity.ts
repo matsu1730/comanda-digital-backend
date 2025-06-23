@@ -3,9 +3,9 @@ import { Ramo } from '../../ramo/entities/ramo.entity';
 import { Produto } from '../../produto/entities/produto.entity';
 import { Pedido } from 'src/modules/pedido/entities/pedido.entity';
 
-@Entity({ name: 'TB_ESTABELECIMENTO' })
+@Entity({ name: 'tb_estabelecimento' })
 export class Estabelecimento {
-  @PrimaryGeneratedColumn({ name: 'ID' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ name: 'nom_estabelecimento' })
@@ -18,7 +18,7 @@ export class Estabelecimento {
   endereco: string;
 
   @ManyToOne(() => Ramo, (ramo) => ramo.estabelecimentos)
-  @JoinColumn({ name: 'ID_RAMO' })
+  @JoinColumn({ name: 'id_ramo' })
   ramo: Ramo;
 
   @OneToMany(() => Produto, (produto) => produto.estabelecimento)

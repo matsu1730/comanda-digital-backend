@@ -10,9 +10,9 @@ import { Cliente } from '../../cliente/entities/cliente.entity';
 import { MetodoPagamento } from '../../metodo-pagamento/entities/metodo-pagamento.entity';
 import { Pagamento } from '../../pagamento/entities/pagamento.entity';
 
-@Entity({ name: 'TB_CLIENTE_METODO_PAGAMENTO' })
+@Entity({ name: 'tb_cliente_metodo_pagamento' })
 export class ClienteMetodoPagamento {
-  @PrimaryGeneratedColumn({ name: 'ID' })
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
   @Column({ name: 'num_cartao' })
@@ -22,11 +22,11 @@ export class ClienteMetodoPagamento {
   validade: Date;
 
   @ManyToOne(() => Cliente, (cliente) => cliente.metodosPagamento)
-  @JoinColumn({ name: 'ID_CLIENTE' })
+  @JoinColumn({ name: 'id_cliente' })
   cliente: Cliente;
 
   @ManyToOne(() => MetodoPagamento, (metodoPagamento) => metodoPagamento.clienteMetodosPagamento)
-  @JoinColumn({ name: 'ID_METODO_PAGAMENTO' })
+  @JoinColumn({ name: 'id_metodo_pagamento' })
   metodoPagamento: MetodoPagamento;
 
   @OneToMany(() => Pagamento, (pagamento) => pagamento.clienteMetodoPagamento)

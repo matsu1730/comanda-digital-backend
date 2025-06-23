@@ -48,4 +48,9 @@ export class PedidoController {
   remove(@Param('id') id: string) {
     return this.pedidoService.remove(+id);
   }
+
+  @Post("update-status")
+  async updateStatus() {
+    await this.pedidoService.updateStatus();
+  }
 }

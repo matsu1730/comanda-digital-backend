@@ -2,9 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 't
 import { Pedido } from '../../pedido/entities/pedido.entity';
 import { Produto } from '../../produto/entities/produto.entity';
 
-@Entity({ name: 'TB_PEDIDO_ITEM' })
+@Entity({ name: 'tb_pedido_item' })
 export class PedidoItem {
-  @PrimaryGeneratedColumn({ name: 'id' })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ name: 'num_quantidade' })
